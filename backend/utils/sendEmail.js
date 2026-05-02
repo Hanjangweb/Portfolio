@@ -16,15 +16,14 @@ const sendEmail = async (options) => {
 
     const message = {
       from: `${process.env.FROM_NAME || 'Portfolio'} <${process.env.EMAIL_USER}>`,
-      to: process.env.CONTACT_RECEIVER, 
-      replyTo: options.email,           
+      to: options.email,
+      replyTo: options.replyTo,
       subject: options.subject,
       text: options.message,
       html: options.html || `<p>${options.message}</p>`,
     };
 
     const info = await transporter.sendMail(message);
-
     console.log("Message sent: %s", info.messageId);
     return info;
   } catch (error) {

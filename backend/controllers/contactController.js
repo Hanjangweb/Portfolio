@@ -11,19 +11,16 @@ export const submitContact = asyncHandler(async (req, res) => {
     return res.status(400).json({ message: "Please provide all required fields" });
   }
 
-  const contact = await Contact.create({
-    name,
-    email,
-    subject,
-    message,
-  });
+  const contact = await Contact.create({ name, email, subject, message });
 
   // Try sending email notification to admin
   try {
     const settings = await Settings.findOne();
-    const adminEmail = settings?.email || process.env.CONTACT_RECEIVER || 'admin@example.com';
+    const adminEmail = settings?.email || process.env.CONTACT_RECEIVER;
+
     await sendEmail({
       email: adminEmail,
+      replyTo: email,
       subject: `New Contact Inquiry: ${subject}`,
       html: `
         <h2>New Contact Message from ${name}</h2>
@@ -34,7 +31,7 @@ export const submitContact = asyncHandler(async (req, res) => {
         <hr />
         <p>This message was sent from your portfolio website.</p>
       `,
-      message: `New Contact Message from ${name}\nEmail: ${email}\nSubject: ${subject}\nMessage: ${message}`
+      message: `New Contact Message from ${name}\nEmail: ${email}\nSubject: ${subject}\nMessage: ${message}`,
     });
   } catch (error) {
     console.error("Email notification failed:", error.message);
@@ -52,12 +49,8 @@ export const getContacts = asyncHandler(async (req, res) => {
   const { read, replied } = req.query;
   const query = {};
 
-  if (read !== undefined) {
-    query.read = read === "true";
-  }
-  if (replied !== undefined) {
-    query.replied = replied === "true";
-  }
+  if (read !== undefined) query.read = read === "true";
+  if (replied !== undefined) query.replied = replied === "true";
 
   const contacts = await Contact.find(query).sort({ createdAt: -1 });
 
@@ -76,16 +69,12 @@ export const getContact = asyncHandler(async (req, res) => {
     return res.status(404).json({ message: "Contact not found" });
   }
 
-  // Mark as read
   if (!contact.read) {
     contact.read = true;
     await contact.save();
   }
 
-  res.json({
-    success: true,
-    data: contact,
-  });
+  res.json({ success: true, data: contact });
 });
 
 // Update contact (Admin)
@@ -101,11 +90,7 @@ export const updateContact = asyncHandler(async (req, res) => {
     runValidators: true,
   });
 
-  res.json({
-    success: true,
-    message: "Contact updated",
-    data: contact,
-  });
+  res.json({ success: true, message: "Contact updated", data: contact });
 });
 
 // Delete contact (Admin)
@@ -116,10 +101,7 @@ export const deleteContact = asyncHandler(async (req, res) => {
     return res.status(404).json({ message: "Contact not found" });
   }
 
-  res.json({
-    success: true,
-    message: "Contact deleted",
-  });
+  res.json({ success: true, message: "Contact deleted" });
 });
 
 // Reply to contact (Admin)
@@ -130,19 +112,35 @@ export const replyContact = asyncHandler(async (req, res) => {
     return res.status(400).json({ message: "Please provide a reply" });
   }
 
-  let contact = await Contact.findById(req.params.id);
+  const contact = await Contact.findById(req.params.id);
 
   if (!contact) {
     return res.status(404).json({ message: "Contact not found" });
+  }
+
+  // Send reply email to the original sender
+  try {
+    await sendEmail({
+      email: contact.email,
+      replyTo: process.env.EMAIL_USER,
+      subject: `Re: ${contact.subject}`,
+      html: `
+        <h2>Reply from Portfolio</h2>
+        <p>Hi ${contact.name},</p>
+        <p>${reply}</p>
+        <hr />
+        <p><strong>Your original message:</strong></p>
+        <p>${contact.message}</p>
+      `,
+      message: `Hi ${contact.name},\n\n${reply}\n\nYour original message:\n${contact.message}`,
+    });
+  } catch (error) {
+    console.error("Reply email failed:", error.message);
   }
 
   contact.reply = reply;
   contact.replied = true;
   await contact.save();
 
-  res.json({
-    success: true,
-    message: "Reply sent",
-    data: contact,
-  });
+  res.json({ success: true, message: "Reply sent", data: contact });
 });
