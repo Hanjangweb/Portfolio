@@ -22,6 +22,7 @@ export const Contact = () => {
     loadSettings();
   }, []);
 
+  
   const { values, handleChange, handleSubmit, loading, resetForm } = useForm(
     {
       name: '',

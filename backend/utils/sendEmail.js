@@ -10,16 +10,17 @@ const sendEmail = async (options) => {
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASS ? process.env.EMAIL_PASS.replace(/\s+/g, '') : '',
       },
-      connectionTimeout: 5000,
-      socketTimeout: 5000,
+      connectionTimeout: 10000,
+      socketTimeout: 10000,
     });
 
     const message = {
       from: `${process.env.FROM_NAME || 'Portfolio'} <${process.env.EMAIL_USER}>`,
-      to: options.email,
+      to: process.env.CONTACT_RECEIVER, 
+      replyTo: options.email,           
       subject: options.subject,
       text: options.message,
-      html: options.html,
+      html: options.html || `<p>${options.message}</p>`,
     };
 
     const info = await transporter.sendMail(message);
