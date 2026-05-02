@@ -2,6 +2,12 @@ import nodemailer from "nodemailer";
 
 const sendEmail = async (options) => {
   try {
+
+    console.log("=== EMAIL DEBUG ===");
+    console.log("Sending to:", options.email);
+    console.log("From:", process.env.EMAIL_USER);
+    console.log("Pass length:", process.env.EMAIL_PASS?.replace(/\s+/g, '').length);
+    console.log("==================");
     const transporter = nodemailer.createTransport({
       host: 'smtp.gmail.com',
       port: 465,
@@ -13,6 +19,9 @@ const sendEmail = async (options) => {
       connectionTimeout: 10000,
       socketTimeout: 10000,
     });
+
+    await transporter.verify();
+    console.log("✅ SMTP connection verified");
 
     const message = {
       from: `${process.env.FROM_NAME || 'Portfolio'} <${process.env.EMAIL_USER}>`,
