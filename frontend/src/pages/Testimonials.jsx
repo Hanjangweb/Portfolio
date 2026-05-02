@@ -115,7 +115,7 @@ const Testimonials = () => {
       {/* Submission Form Overlay */}
       {showForm && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-fade-in">
-          <div className="bg-white dark:bg-gray-900 w-full max-w-lg rounded-3xl p-8 shadow-2xl relative">
+          <div style={{ marginTop: '3rem' }} className="bg-white dark:bg-gray-900 w-full max-w-lg rounded-3xl p-8 shadow-2xl relative">
             <button
               onClick={() => setShowForm(false)}
               className="absolute top-6 right-6 text-gray-400 hover:text-gray-600"
