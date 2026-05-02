@@ -13,10 +13,17 @@ export const submitContact = asyncHandler(async (req, res) => {
 
   const contact = await Contact.create({ name, email, subject, message });
 
+  console.log("=== CONTACT CREATED ===");
+  console.log("Contact ID:", contact._id);
   // Try sending email notification to admin
   try {
     const settings = await Settings.findOne();
+    console.log("Settings found:", !!settings);
+    console.log("Settings email:", settings?.email);
     const adminEmail = settings?.email || process.env.CONTACT_RECEIVER;
+
+    console.log("Admin email resolved to:", adminEmail);
+    console.log("About to call sendEmail...");
 
     await sendEmail({
       email: adminEmail,
