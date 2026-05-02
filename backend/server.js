@@ -68,6 +68,16 @@ app.use(express.urlencoded({ extended: true }));
 // Analytics tracking middleware
 app.use(trackPageView);
 
+// Root route — shows API is alive
+app.get("/", (req, res) => {
+  res.json({
+    success: true,
+    message: "Portfolio API is running 🚀",
+    version: "1.0.0",
+    docs: "/api/health",
+  });
+});
+
 // Health check route
 app.get("/api/health", (req, res) => {
   res.json({ success: true, message: "Server is running" });
