@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { testimonialsAPI, aiAPI } from '../utils/api';
+import { testimonialsAPI, aiAPI, getImageUrl } from '../utils/api';
 import { useFetch } from '../hooks/useCustom';
 import { Star, MessageSquare, Quote, Send, Sparkles, Loader2 } from 'lucide-react';
 import toast from 'react-hot-toast';
@@ -83,7 +83,7 @@ const Testimonials = () => {
         {/* Stats/Action CTA */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-20">
           <div className="relative overflow-hidden bg-gradient-to-br from-blue-600 via-indigo-600 to-purple-700 rounded-3xl p-8 text-white flex flex-col justify-center">
-            <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10 mix-blend-overlay" />
+            <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10 mix-blend-overlay pointer-events-none" />
             <Quote size={48} className="mb-4 opacity-40" />
             <h2 className="text-3xl font-bold mb-4">Have we worked together?</h2>
             <p className="mb-8 opacity-90 text-lg">
@@ -91,7 +91,7 @@ const Testimonials = () => {
             </p>
             <button
               onClick={() => setShowForm(true)}
-              className="w-fit bg-white text-blue-600 px-8 py-3 rounded-full font-bold hover:bg-blue-50 hover:scale-105 transition-all shadow-xl"
+              className="w-fit bg-white text-blue-600 px-8 py-3 rounded-full font-bold hover:bg-blue-50 hover:scale-105 transition-all shadow-xl relative z-10"
             >
               Leave a Review
             </button>
@@ -211,9 +211,17 @@ const Testimonials = () => {
               className="glass p-8 rounded-3xl border border-white/30 dark:border-white/10 relative h-full flex flex-col hover:-translate-y-1 hover:shadow-xl transition-all duration-300"
             >
               <div className="flex items-center gap-4 mb-6">
-                <div className="w-14 h-14 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-full flex items-center justify-center text-white font-bold text-xl flex-shrink-0 shadow-lg">
-                  {t.name.charAt(0)}
-                </div>
+                {t.image ? (
+                  <img
+                    src={getImageUrl(t.image)}
+                    alt={t.name}
+                    className="w-14 h-14 rounded-full object-cover border border-gray-200 dark:border-gray-700 shrink-0 shadow-lg"
+                  />
+                ) : (
+                  <div className="w-14 h-14 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-full flex items-center justify-center text-white font-bold text-xl flex-shrink-0 shadow-lg">
+                    {t.name.charAt(0)}
+                  </div>
+                )}
                 <div className="min-w-0">
                   <h4 className="font-bold text-gray-900 dark:text-white truncate">{t.name}</h4>
                   <p className="text-sm text-gray-500 truncate">{t.role}</p>

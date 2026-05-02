@@ -5,6 +5,16 @@ const API = axios.create({
   withCredentials: false,
 });
 
+export const getImageUrl = (path) => {
+  if (!path) return '';
+  if (path.startsWith('http')) return path;
+  
+  const baseUrl = import.meta.env.VITE_API_URL 
+    ? import.meta.env.VITE_API_URL.replace('/api', '') 
+    : '';
+  return `${baseUrl}${path}`;
+};
+
 // Add token to requests
 API.interceptors.request.use((config) => {
   const token = localStorage.getItem('token');

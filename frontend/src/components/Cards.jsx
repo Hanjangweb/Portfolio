@@ -1,6 +1,7 @@
 import React from 'react';
 import { ExternalLink, Github, ArrowRight, Star } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { getImageUrl } from '../utils/api';
 
 // ─── PROJECT CARD ─────────────────────────────────────────────────
 export const ProjectCard = ({ project }) => {
@@ -14,7 +15,7 @@ export const ProjectCard = ({ project }) => {
       {/* Thumbnail */}
       <div className="relative aspect-video overflow-hidden bg-gray-100 dark:bg-gray-800 flex-shrink-0">
         <img
-          src={project.image || 'https://images.unsplash.com/photo-1551650975-87deedd944c3?w=800&q=80'}
+          src={project.image ? getImageUrl(project.image) : 'https://images.unsplash.com/photo-1551650975-87deedd944c3?w=800&q=80'}
           alt={project.title}
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
         />
@@ -159,7 +160,7 @@ export const BlogCard = ({ post }) => {
       {post.image && (
         <div className="aspect-[2/1] bg-gray-100 dark:bg-gray-800 overflow-hidden flex-shrink-0">
           <img
-            src={post.image}
+            src={getImageUrl(post.image)}
             alt={post.title}
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
           />
@@ -232,7 +233,7 @@ export const TestimonialCard = ({ testimonial }) => {
       <div className="flex items-center gap-3 mb-4">
         {testimonial.image ? (
           <img
-            src={testimonial.image}
+            src={getImageUrl(testimonial.image)}
             alt={testimonial.name}
             className="w-10 h-10 rounded-full object-cover border border-gray-200 dark:border-gray-700 shrink-0"
           />
