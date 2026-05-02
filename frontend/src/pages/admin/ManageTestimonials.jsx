@@ -131,7 +131,7 @@ export const ManageTestimonials = () => {
           <div key={t._id} className="bg-white dark:bg-[#0f172a] p-6 rounded-2xl border border-gray-100 dark:border-gray-800 shadow-sm relative group">
             <button
               onClick={() => handleDelete(t._id)}
-              className="absolute top-4 right-4 p-2 text-red-500 hover:bg-red-50 dark:hover:bg-red-500/10 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity"
+              className="absolute top-4 right-4 p-2 text-red-500 hover:bg-red-50 dark:hover:bg-red-500/10 rounded-lg transition-opacity"
             >
               <Trash2 size={18} />
             </button>

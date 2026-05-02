@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { blogAPI, uploadAPI, aiAPI } from '../../utils/api';
+import { blogAPI, uploadAPI, aiAPI, getImageUrl } from '../../utils/api';
 import { useFetch } from '../../hooks/useCustom';
 import { Plus, Edit2, Trash2, Upload, Sparkles, Loader2, X, Send } from 'lucide-react';
 import toast from 'react-hot-toast';
@@ -140,7 +140,7 @@ export const ManageBlog = () => {
                 <tr key={post._id} className="hover:bg-gray-50 dark:hover:bg-gray-900/50 transition-colors group">
                   <td className="px-6 py-4">
                     <div className="flex items-center gap-3">
-                      {post.image && <img src={post.image} alt="" className="w-8 h-8 rounded-lg object-cover" />}
+                      {post.image && <img src={getImageUrl(post.image)} alt="" className="w-8 h-8 rounded-lg object-cover" />}
                       <span className="font-bold text-gray-900 dark:text-white line-clamp-1">{post.title}</span>
                     </div>
                   </td>
@@ -153,7 +153,7 @@ export const ManageBlog = () => {
                     {new Date(post.createdAt).toLocaleDateString()}
                   </td>
                   <td className="px-6 py-4 text-right">
-                    <div className="flex justify-end gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                    <div className="flex justify-end gap-1">
                       <button onClick={() => openEditModal(post)} className="text-blue-600 hover:bg-blue-50 dark:hover:bg-blue-900/30 p-2 rounded-lg transition">
                         <Edit2 size={18} />
                       </button>

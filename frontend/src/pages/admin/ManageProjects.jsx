@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { projectsAPI, uploadAPI, aiAPI } from '../../utils/api';
+import { projectsAPI, uploadAPI, aiAPI, getImageUrl } from '../../utils/api';
 import { useFetch, useForm } from '../../hooks/useCustom';
 import toast from 'react-hot-toast';
 import { Plus, Trash2, Edit2, Upload, Sparkles, Loader2 } from 'lucide-react';
@@ -292,7 +292,7 @@ export const ManageProjects = () => {
                 <tr key={project._id} className="hover:bg-gray-50 dark:hover:bg-gray-900/50 transition-colors group">
                   <td className="py-4 px-6">
                     <div className="flex items-center gap-3">
-                      <img src={project.image} alt="" className="w-10 h-10 rounded-lg object-cover" />
+                      <img src={project.image ? getImageUrl(project.image) : ''} alt="" className="w-10 h-10 rounded-lg object-cover" />
                       <span className="font-bold text-gray-900 dark:text-white">{project.title}</span>
                     </div>
                   </td>
@@ -305,7 +305,7 @@ export const ManageProjects = () => {
                     {project.technologies?.slice(0, 2).join(', ')}...
                   </td>
                   <td className="py-4 px-6 text-right">
-                    <div className="flex justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                    <div className="flex justify-end gap-2">
                       <button
                         onClick={() => handleEdit(project)}
                         className="p-2 text-blue-600 hover:bg-blue-50 dark:hover:bg-blue-900/30 rounded-lg transition"

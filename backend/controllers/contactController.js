@@ -1,4 +1,5 @@
 import Contact from "../models/Contact.js";
+import Settings from "../models/Settings.js";
 import { asyncHandler } from "../middleware/errorHandler.js";
 import sendEmail from "../utils/sendEmail.js";
 
@@ -19,7 +20,8 @@ export const submitContact = asyncHandler(async (req, res) => {
 
   // Try sending email notification to admin
   try {
-    const adminEmail = process.env.CONTACT_RECEIVER || 'admin@example.com';
+    const settings = await Settings.findOne();
+    const adminEmail = settings?.email || process.env.CONTACT_RECEIVER || 'admin@example.com';
     await sendEmail({
       email: adminEmail,
       subject: `New Contact Inquiry: ${subject}`,
