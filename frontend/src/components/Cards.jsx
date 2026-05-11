@@ -17,6 +17,7 @@ export const ProjectCard = ({ project }) => {
         <img
           src={project.image ? getImageUrl(project.image) : 'https://images.unsplash.com/photo-1551650975-87deedd944c3?w=800&q=80'}
           alt={project.title}
+          loading="lazy"
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
         />
 
@@ -162,6 +163,7 @@ export const BlogCard = ({ post }) => {
           <img
             src={getImageUrl(post.image)}
             alt={post.title}
+            loading="lazy"
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
           />
         </div>
@@ -235,6 +237,7 @@ export const TestimonialCard = ({ testimonial }) => {
           <img
             src={getImageUrl(testimonial.image)}
             alt={testimonial.name}
+            loading="lazy"
             className="w-10 h-10 rounded-full object-cover border border-gray-200 dark:border-gray-700 shrink-0"
           />
         ) : (

@@ -21,6 +21,7 @@ import footerRoutes from "./routes/footerRoutes.js";
 import settingsRoutes from "./routes/settingsRoutes.js";
 import uploadRoutes from "./routes/uploadRoutes.js";
 import aiRoutes from "./routes/aiRoutes.js";
+import compression from "compression";
 import path from "path";
 import { fileURLToPath } from "url";
 
@@ -42,6 +43,7 @@ const connectDB = async () => {
 connectDB();
 
 // Middleware
+app.use(compression());
 app.use(helmet({
   crossOriginResourcePolicy: false,
 }));
@@ -96,8 +98,12 @@ app.use("/api/settings", settingsRoutes);
 app.use("/api/upload", uploadRoutes);
 app.use("/api/ai", aiRoutes);
 
-// Static folders
-app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+// Static folders with caching headers
+app.use("/uploads", express.static(path.join(__dirname, "uploads"), {
+  maxAge: '7d', // Cache for 7 days
+  etag: true,
+  lastModified: true
+}));
 
 // 404 handler
 app.use((req, res) => {
