@@ -2,11 +2,17 @@ import React, { useState, useEffect } from 'react';
 import { skillsAPI } from '../utils/api';
 import { useFetch } from '../hooks/useCustom';
 import { SkillCard } from '../components/Cards';
+import { Pagination } from '../components/Pagination';
 import { motion } from 'framer-motion';
 
 const Expertise = () => {
   const { fetchData, loading } = useFetch();
   const [skills, setSkills] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 8;
+
+  const totalPages = Math.ceil(skills.length / itemsPerPage);
+  const currentSkills = skills.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
 
   useEffect(() => {
     const loadSkills = async () => {
@@ -60,7 +66,7 @@ const Expertise = () => {
           initial="hidden"
           animate="visible"
         >
-          {skills.map((skill, index) => (
+          {currentSkills.map((skill, index) => (
             <motion.div
               key={skill._id || index}
               variants={{
@@ -74,6 +80,14 @@ const Expertise = () => {
             </motion.div>
           ))}
         </motion.div>
+      )}
+
+      {!loading && skills.length > 0 && (
+        <Pagination 
+          currentPage={currentPage} 
+          totalPages={totalPages} 
+          onPageChange={setCurrentPage} 
+        />
       )}
     </div>
   );

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { projectsAPI } from '../utils/api';
 import { ProjectCard } from '../components/Cards';
+import { Pagination } from '../components/Pagination';
 import { useFetch } from '../hooks/useCustom';
 import { Filter, Search } from 'lucide-react';
 import { motion } from 'framer-motion';
@@ -11,6 +12,11 @@ export const Projects = () => {
   const [filteredProjects, setFilteredProjects] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [searchTerm, setSearchTerm] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 6;
+
+  const totalPages = Math.ceil(filteredProjects.length / itemsPerPage);
+  const currentProjects = filteredProjects.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
 
   useEffect(() => {
     const loadProjects = async () => {
@@ -50,6 +56,7 @@ export const Projects = () => {
       );
     }
     setFilteredProjects(filtered);
+    setCurrentPage(1);
   };
 
   const containerVariants = {
@@ -134,14 +141,15 @@ export const Projects = () => {
             <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary"></div>
           </div>
         ) : filteredProjects.length > 0 ? (
-          <motion.div 
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
-            className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
-          >
-            {filteredProjects.map((project) => (
-              <motion.div
+          <div className="space-y-12">
+            <motion.div 
+              variants={containerVariants}
+              initial="hidden"
+              animate="visible"
+              className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+            >
+              {currentProjects.map((project) => (
+                <motion.div
                 key={project._id}
                 variants={{
                   hidden: { opacity: 0, y: 30 },
@@ -151,7 +159,13 @@ export const Projects = () => {
                 <ProjectCard project={project} />
               </motion.div>
             ))}
-          </motion.div>
+            </motion.div>
+            <Pagination 
+              currentPage={currentPage} 
+              totalPages={totalPages} 
+              onPageChange={setCurrentPage} 
+            />
+          </div>
         ) : (
           <motion.div 
             initial={{ opacity: 0 }}
