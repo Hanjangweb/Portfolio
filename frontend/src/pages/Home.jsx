@@ -10,6 +10,7 @@ export const Home = () => {
   const { fetchData } = useFetch();
   const [projects, setProjects] = useState([]);
   const [skills, setSkills] = useState([]);
+  const [allSkills, setAllSkills] = useState([]);
   const [testimonials, setTestimonials] = useState([]);
 
   useEffect(() => {
@@ -22,6 +23,7 @@ export const Home = () => {
         ]);
         setProjects(projectsData?.data?.slice(0, 3) || []);
         setSkills(skillsData?.data?.slice(0, 6) || []);
+        setAllSkills(skillsData?.data || []);
         setTestimonials(testimonialsData?.data?.slice(0, 3) || []);
       } catch (error) {
         console.error('Error loading data:', error);
@@ -49,8 +51,8 @@ export const Home = () => {
     }
   };
 
-  const marqueeItems = skills.length > 0
-    ? skills.map((skill) => skill.name)
+  const marqueeItems = allSkills.length > 0
+    ? allSkills.map((skill) => skill.name)
     : ['React', 'Node.js', 'MongoDB', 'JavaScript', 'TypeScript', 'AWS', 'GraphQL'];
 
   return (
