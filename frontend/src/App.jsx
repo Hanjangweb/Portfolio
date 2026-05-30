@@ -104,6 +104,7 @@ function App() {
               } />
             </Routes>
           </Suspense>
+          </div>
           <Toaster position="bottom-right" />
         </BrowserRouter>
       </LazyMotion>
