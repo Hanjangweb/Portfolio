@@ -149,7 +149,7 @@ export const Home = () => {
       </section>
 
       {/* Features Section */}
-      <section className="max-w-8xl mx-auto px-4 py-14 relative z-10">
+      <section className="max-w-8xl mx-auto px-4 py-14 relative z-10" style={{ contentVisibility: 'auto', containIntrinsicSize: '0 500px' }}>
         <m.div 
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -185,7 +185,7 @@ export const Home = () => {
       </section>
 
       {/* Recent Projects */}
-      <section className="py-20 relative overflow-hidden">
+      <section className="py-20 relative overflow-hidden" style={{ contentVisibility: 'auto', containIntrinsicSize: '0 800px' }}>
         <div className="absolute inset-0 bg-gray-50 dark:bg-gray-900/50" />
         <div className="absolute top-0 right-0 w-[250px] h-[250px] md:w-[500px] md:h-[500px] bg-blue-500/10 blur-2xl md:blur-[120px] pointer-events-none rounded-full" />
         <div className="max-w-8xl mx-auto px-4 relative z-10">
@@ -229,7 +229,7 @@ export const Home = () => {
       </section>
 
       {/* Skills Section */}
-      <section className="max-w-8xl mx-auto px-4 py-14">
+      <section className="max-w-8xl mx-auto px-4 py-14" style={{ contentVisibility: 'auto', containIntrinsicSize: '0 600px' }}>
         <div className="flex justify-between items-end mb-12">
           <div className="text-center md:text-left">
             <h2 className="text-4xl md:text-5xl font-bold mb-4">My Expertise</h2>
@@ -262,7 +262,7 @@ export const Home = () => {
       </section>
 
       {/* Testimonials */}
-      <section className="py-14 bg-gray-50 dark:bg-gray-900/50">
+      <section className="py-14 bg-gray-50 dark:bg-gray-900/50" style={{ contentVisibility: 'auto', containIntrinsicSize: '0 600px' }}>
         <div className="max-w-8xl mx-auto px-4">
           <div className="flex justify-between items-end mb-12">
             <div className="text-center md:text-left">
@@ -297,7 +297,7 @@ export const Home = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="max-w-5xl mx-auto px-4 py-20">
+      <section className="max-w-5xl mx-auto px-4 py-20" style={{ contentVisibility: 'auto', containIntrinsicSize: '0 400px' }}>
         <m.div 
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}

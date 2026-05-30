@@ -101,18 +101,10 @@ body {
   -webkit-background-clip: text;
   color: transparent;
   background-image: linear-gradient(to right, #2563eb, #8b5cf6, #ec4899);
-  background-size: 200% auto;
-  animation: gradientFlow 5s ease infinite;
 }
 
 .dark .text-gradient {
   background-image: linear-gradient(to right, #60a5fa, #a78bfa, #f472b6);
-}
-
-@keyframes gradientFlow {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
 }
 
 @utility bg-grid-pattern {
