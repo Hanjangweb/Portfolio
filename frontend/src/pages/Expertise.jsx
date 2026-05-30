@@ -9,7 +9,7 @@ const Expertise = () => {
   const { fetchData, loading } = useFetch();
   const [skills, setSkills] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 8;
+  const itemsPerPage = 12;
 
   const totalPages = Math.ceil(skills.length / itemsPerPage);
   const currentSkills = skills.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
