@@ -167,6 +167,7 @@ export const ManageProjects = () => {
                   <option value="mobile-app">Mobile App</option>
                   <option value="design">Web Design </option>
                   <option value="mern">Mern Stack</option>
+                  <option value="mern+ai">Mern + AI</option>
                   <option value="wordpress">Word Press</option>
                   <option value="shopify">Shopify</option>
                   <option value="figma">Figma</option>
