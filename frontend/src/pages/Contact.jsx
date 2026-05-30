@@ -3,7 +3,7 @@ import { useForm, useFetch } from '../hooks/useCustom';
 import { contactAPI, settingsAPI, aiAPI } from '../utils/api';
 import toast from 'react-hot-toast';
 import { Mail, Phone, MapPin, Send, Github, Linkedin, Twitter, Instagram, Sparkles, Loader2 } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 
 export const Contact = () => {
   const { fetchData } = useFetch();
@@ -50,7 +50,7 @@ export const Contact = () => {
       <div className="absolute inset-0 bg-grid-pattern opacity-30 pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 relative z-10">
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           className="mb-16 text-center"
@@ -62,11 +62,11 @@ export const Contact = () => {
           <p className="text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto leading-relaxed">
             I'd love to hear about your project. Feel free to reach out!
           </p>
-        </motion.div>
+        </m.div>
 
         <div className="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto">
           {/* Contact Info */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.1 }}
@@ -144,10 +144,10 @@ export const Contact = () => {
                 )}
               </div>
             </div>
-          </motion.div>
+          </m.div>
 
           {/* Contact Form */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.15 }}
@@ -252,7 +252,7 @@ export const Contact = () => {
                 {loading ? 'Sending...' : 'Send Message'}
               </button>
             </form>
-          </motion.div>
+          </m.div>
         </div>
       </div>
     </div>

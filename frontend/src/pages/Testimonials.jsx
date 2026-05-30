@@ -3,7 +3,7 @@ import { testimonialsAPI, aiAPI, getImageUrl } from '../utils/api';
 import { useFetch } from '../hooks/useCustom';
 import { Star, MessageSquare, Quote, Send, Sparkles, Loader2 } from 'lucide-react';
 import toast from 'react-hot-toast';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 
 const Testimonials = () => {
   const { fetchData } = useFetch();
@@ -203,7 +203,7 @@ const Testimonials = () => {
         {/* Testimonials Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {testimonials.map((t, index) => (
-            <motion.div
+            <m.div
               key={t._id}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -236,7 +236,7 @@ const Testimonials = () => {
                 &ldquo;{t.message}&rdquo;
               </p>
               <Quote size={32} className="absolute bottom-8 right-8 opacity-5 text-gray-400" />
-            </motion.div>
+            </m.div>
           ))}
         </div>
       </div>

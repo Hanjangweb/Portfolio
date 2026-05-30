@@ -4,7 +4,7 @@ import { blogAPI } from '../utils/api';
 import { useFetch } from '../hooks/useCustom';
 import { ArrowLeft, Calendar, User, Tag, Clock } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 
 const BlogPost = () => {
   const { id } = useParams();
@@ -48,7 +48,7 @@ const BlogPost = () => {
         <ArrowLeft size={20} /> Back to Blog
       </Link>
 
-      <motion.div
+      <m.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
@@ -132,7 +132,7 @@ const BlogPost = () => {
             </div>
           </div>
         )}
-      </motion.div>
+      </m.div>
     </article>
   );
 };

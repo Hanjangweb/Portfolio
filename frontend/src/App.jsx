@@ -1,5 +1,6 @@
 import React, { Suspense, lazy } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { LazyMotion, domAnimation } from 'framer-motion';
 import { Toaster } from 'react-hot-toast';
 import { HelmetProvider } from 'react-helmet-async';
 
@@ -56,8 +57,9 @@ const ProtectedRoute = ({ children }) => {
 function App() {
   return (
     <HelmetProvider>
-      <BrowserRouter>
-        <div className="flex flex-col min-h-screen bg-[var(--background)]">
+      <LazyMotion features={domAnimation} strict>
+        <BrowserRouter>
+          <div className="flex flex-col min-h-screen bg-[var(--background)]">
           <Suspense fallback={<PageLoading />}>
             <Routes>
               {/* Public Routes with Header & Footer */}
@@ -102,9 +104,9 @@ function App() {
               } />
             </Routes>
           </Suspense>
-        </div>
-        <Toaster position="bottom-right" />
-      </BrowserRouter>
+          <Toaster position="bottom-right" />
+        </BrowserRouter>
+      </LazyMotion>
     </HelmetProvider>
   );
 }

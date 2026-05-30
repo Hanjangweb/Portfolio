@@ -1,12 +1,12 @@
 import React from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 
 export const Pagination = ({ currentPage, totalPages, onPageChange }) => {
   if (totalPages <= 1) return null;
 
   return (
-    <motion.div 
+    <m.div 
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       className="flex justify-center items-center gap-2 mt-12 relative z-10"
@@ -40,6 +40,6 @@ export const Pagination = ({ currentPage, totalPages, onPageChange }) => {
       >
         <ChevronRight size={20} />
       </button>
-    </motion.div>
+    </m.div>
   );
 };

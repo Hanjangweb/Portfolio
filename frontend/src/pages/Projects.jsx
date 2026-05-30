@@ -4,7 +4,7 @@ import { ProjectCard } from '../components/Cards';
 import { Pagination } from '../components/Pagination';
 import { useFetch } from '../hooks/useCustom';
 import { Filter, Search } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 
 export const Projects = () => {
   const { fetchData, loading } = useFetch();
@@ -70,11 +70,11 @@ export const Projects = () => {
   return (
     <div className="min-h-screen relative overflow-hidden py-20 lg:py-32">
       {/* Background decoration */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-[500px] bg-blue-500/10 dark:bg-blue-600/10 blur-[120px] pointer-events-none rounded-full" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-[500px] bg-blue-500/10 dark:bg-blue-600/10 blur-2xl md:blur-[120px] pointer-events-none rounded-full" />
       <div className="absolute inset-0 bg-grid-pattern opacity-30 pointer-events-none mask-image-linear-gradient"></div>
 
       <div className="max-w-7xl mx-auto px-4 relative z-10">
-        <motion.div 
+        <m.div 
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           className="mb-16 text-center"
@@ -88,10 +88,10 @@ export const Projects = () => {
           <p className="text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto leading-relaxed">
             Explore my portfolio of web applications, designs, and digital solutions crafted with modern technologies.
           </p>
-        </motion.div>
+        </m.div>
 
         {/* Search Bar */}
-        <motion.div 
+        <m.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
@@ -110,10 +110,10 @@ export const Projects = () => {
               />
             </div>
           </div>
-        </motion.div>
+        </m.div>
 
         {/* Filter Buttons */}
-        <motion.div 
+        <m.div 
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.2 }}
@@ -133,7 +133,7 @@ export const Projects = () => {
               {category.charAt(0).toUpperCase() + category.slice(1)}
             </button>
           ))}
-        </motion.div>
+        </m.div>
 
         {/* Projects Grid */}
         {loading ? (
@@ -142,14 +142,14 @@ export const Projects = () => {
           </div>
         ) : filteredProjects.length > 0 ? (
           <div className="space-y-12">
-            <motion.div 
+            <m.div 
               variants={containerVariants}
               initial="hidden"
               animate="visible"
               className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
             >
               {currentProjects.map((project) => (
-                <motion.div
+                <m.div
                 key={project._id}
                 variants={{
                   hidden: { opacity: 0, y: 30 },
@@ -157,9 +157,9 @@ export const Projects = () => {
                 }}
               >
                 <ProjectCard project={project} />
-              </motion.div>
+              </m.div>
             ))}
-            </motion.div>
+            </m.div>
             <Pagination 
               currentPage={currentPage} 
               totalPages={totalPages} 
@@ -167,7 +167,7 @@ export const Projects = () => {
             />
           </div>
         ) : (
-          <motion.div 
+          <m.div 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             className="text-center py-24 glass rounded-3xl"
@@ -177,7 +177,7 @@ export const Projects = () => {
             </div>
             <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">No projects found</h3>
             <p className="text-gray-500 dark:text-gray-400">Try adjusting your search or filter criteria.</p>
-          </motion.div>
+          </m.div>
         )}
       </div>
     </div>

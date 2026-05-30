@@ -3,7 +3,7 @@ import { skillsAPI } from '../utils/api';
 import { useFetch } from '../hooks/useCustom';
 import { SkillCard } from '../components/Cards';
 import { Pagination } from '../components/Pagination';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 
 const Expertise = () => {
   const { fetchData, loading } = useFetch();
@@ -37,9 +37,9 @@ const Expertise = () => {
   return (
     <div className="max-w-7xl mx-auto px-4 py-16 lg:py-24 relative">
       {/* Background decoration */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-64 bg-blue-500/10 dark:bg-blue-500/5 blur-[100px] pointer-events-none rounded-full" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-64 bg-blue-500/10 dark:bg-blue-500/5 blur-2xl md:blur-[100px] pointer-events-none rounded-full" />
       
-      <motion.div 
+      <m.div 
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         className="text-center mb-16 relative z-10"
@@ -53,21 +53,21 @@ const Expertise = () => {
         <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto text-lg leading-relaxed">
           A comprehensive overview of the technologies and tools I use to build robust, scalable, and visually stunning applications.
         </p>
-      </motion.div>
+      </m.div>
 
       {loading ? (
         <div className="flex justify-center items-center h-64">
           <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary"></div>
         </div>
       ) : (
-        <motion.div 
+        <m.div 
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 relative z-10"
           variants={containerVariants}
           initial="hidden"
           animate="visible"
         >
           {currentSkills.map((skill, index) => (
-            <motion.div
+            <m.div
               key={skill._id || index}
               variants={{
                 hidden: { opacity: 0, y: 20 },
@@ -77,9 +77,9 @@ const Expertise = () => {
               transition={{ duration: 0.2 }}
             >
               <SkillCard skill={skill} />
-            </motion.div>
+            </m.div>
           ))}
-        </motion.div>
+        </m.div>
       )}
 
       {!loading && skills.length > 0 && (

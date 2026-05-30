@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { projectsAPI, skillsAPI, testimonialsAPI } from '../utils/api';
 import { ProjectCard, SkillCard, TestimonialCard } from '../components/Cards';
 import { ArrowRight, Code2, Zap, Target, Sparkles } from 'lucide-react';
@@ -60,31 +60,31 @@ export const Home = () => {
       {/* Hero Section */}
       <section className="relative max-w-8xl mx-auto px-4 py-24 md:py-32 text-center overflow-hidden min-h-[90vh] flex flex-col justify-center">
         {/* Animated Background Gradients */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-blue-500/20 rounded-full blur-[120px] pointer-events-none dark:bg-blue-600/10 animate-pulse-slow"></div>
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-purple-500/20 rounded-full blur-[100px] pointer-events-none dark:bg-purple-600/10"></div>
-        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-indigo-500/20 rounded-full blur-[120px] pointer-events-none dark:bg-indigo-600/10"></div>
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] md:w-[800px] md:h-[800px] bg-blue-500/20 rounded-full blur-2xl md:blur-[120px] pointer-events-none dark:bg-blue-600/10 animate-pulse-slow"></div>
+        <div className="absolute top-0 right-0 w-[200px] h-[200px] md:w-[500px] md:h-[500px] bg-purple-500/20 rounded-full blur-2xl md:blur-[100px] pointer-events-none dark:bg-purple-600/10"></div>
+        <div className="absolute bottom-0 left-0 w-[250px] h-[250px] md:w-[600px] md:h-[600px] bg-indigo-500/20 rounded-full blur-2xl md:blur-[120px] pointer-events-none dark:bg-indigo-600/10"></div>
         <div className="absolute inset-0 bg-grid-pattern opacity-30 pointer-events-none mask-image-linear-gradient"></div>
         
-        <motion.div 
+        <m.div 
           className="relative z-10"
           initial="hidden"
           animate="visible"
           variants={containerVariants}
         >
-          <motion.div variants={itemVariants} className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm font-medium mb-8 text-primary border border-blue-200 dark:border-blue-800 shadow-sm backdrop-blur-xl">
+          <m.div variants={itemVariants} className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm font-medium mb-8 text-primary border border-blue-200 dark:border-blue-800 shadow-sm backdrop-blur-xl">
             <Sparkles size={16} className="animate-pulse" />
             <span>Available for new projects</span>
-          </motion.div>
+          </m.div>
           
-          <motion.h1 variants={itemVariants} className="text-6xl md:text-8xl lg:text-9xl font-bold mb-6 tracking-tight animate-float">
+          <m.h1 variants={itemVariants} className="text-6xl md:text-8xl lg:text-9xl font-bold mb-6 tracking-tight animate-float">
             Full stack <span className="text-gradient drop-shadow-sm">Engineer</span>
-          </motion.h1>
+          </m.h1>
           
-          <motion.p variants={itemVariants} className="text-xl md:text-2xl text-gray-600 dark:text-gray-400 mb-10 max-w-2xl mx-auto font-light leading-relaxed">
+          <m.p variants={itemVariants} className="text-xl md:text-2xl text-gray-600 dark:text-gray-400 mb-10 max-w-2xl mx-auto font-light leading-relaxed">
             I craft digital experiences that combine stunning design with robust engineering.
-          </motion.p>
+          </m.p>
           
-          <motion.div variants={itemVariants} className="flex gap-4 justify-center flex-wrap">
+          <m.div variants={itemVariants} className="flex gap-4 justify-center flex-wrap">
             <Link
               to="/projects"
               className="group inline-flex items-center gap-2 px-8 py-4 bg-primary text-primary-foreground rounded-full hover:scale-105 transition-all font-semibold shadow-[0_0_40px_-10px_rgba(37,99,235,0.5)] hover:shadow-[0_0_60px_-15px_rgba(37,99,235,0.7)]"
@@ -98,11 +98,11 @@ export const Home = () => {
             >
               Get In Touch
             </Link>
-          </motion.div>
-        </motion.div>
+          </m.div>
+        </m.div>
 
         {/* Stats */}
-        <motion.div 
+        <m.div 
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -120,7 +120,7 @@ export const Home = () => {
               <p className="text-sm md:text-base text-gray-500 dark:text-gray-400 uppercase tracking-wider font-semibold relative z-10">{stat.label}</p>
             </div>
           ))}
-        </motion.div>
+        </m.div>
       </section>
 
       {/* Skills Marquee */}
@@ -150,7 +150,7 @@ export const Home = () => {
 
       {/* Features Section */}
       <section className="max-w-8xl mx-auto px-4 py-14 relative z-10">
-        <motion.div 
+        <m.div 
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
@@ -158,7 +158,7 @@ export const Home = () => {
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-4">Why Choose Me</h2>
           <p className="text-gray-500 dark:text-gray-400 text-lg">Delivering excellence in every line of code</p>
-        </motion.div>
+        </m.div>
         
         <div className="grid md:grid-cols-3 gap-8">
           {[
@@ -166,7 +166,7 @@ export const Home = () => {
             { icon: Zap, title: "High Performance", desc: "Optimized applications that provide smooth user experiences." },
             { icon: Target, title: "Goal Focused", desc: "Understanding your business needs to deliver impactful solutions." }
           ].map((feature, idx) => (
-            <motion.div 
+            <m.div 
               key={idx}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -179,7 +179,7 @@ export const Home = () => {
               </div>
               <h3 className="text-2xl font-bold mb-3">{feature.title}</h3>
               <p className="text-gray-600 dark:text-gray-400 leading-relaxed">{feature.desc}</p>
-            </motion.div>
+            </m.div>
           ))}
         </div>
       </section>
@@ -187,7 +187,7 @@ export const Home = () => {
       {/* Recent Projects */}
       <section className="py-20 relative overflow-hidden">
         <div className="absolute inset-0 bg-gray-50 dark:bg-gray-900/50" />
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-500/10 blur-[120px] pointer-events-none rounded-full" />
+        <div className="absolute top-0 right-0 w-[250px] h-[250px] md:w-[500px] md:h-[500px] bg-blue-500/10 blur-2xl md:blur-[120px] pointer-events-none rounded-full" />
         <div className="max-w-8xl mx-auto px-4 relative z-10">
           <div className="flex flex-col md:flex-row md:justify-between md:items-end mb-12 gap-4">
             <div className="text-center md:text-left">
@@ -204,7 +204,7 @@ export const Home = () => {
           </div>
           <div className="grid md:grid-cols-3 gap-8">
             {projects.map((project, idx) => (
-              <motion.div
+              <m.div
                 key={project._id}
                 initial={{ opacity: 0, scale: 0.95 }}
                 whileInView={{ opacity: 1, scale: 1 }}
@@ -212,7 +212,7 @@ export const Home = () => {
                 transition={{ delay: idx * 0.1 }}
               >
                 <ProjectCard project={project} />
-              </motion.div>
+              </m.div>
             ))}
           </div>
           {/* Mobile View All Button */}
@@ -242,7 +242,7 @@ export const Home = () => {
         </div>
         <div className="grid md:grid-cols-3 gap-8">
           {skills.map((skill, idx) => (
-            <motion.div
+            <m.div
               key={skill._id}
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -250,7 +250,7 @@ export const Home = () => {
               transition={{ delay: idx * 0.1 }}
             >
               <SkillCard skill={skill} />
-            </motion.div>
+            </m.div>
           ))}
         </div>
         <div className="mt-8 text-center md:hidden">
@@ -276,7 +276,7 @@ export const Home = () => {
           </div>
           <div className="grid md:grid-cols-3 gap-8">
             {testimonials.map((testimonial, idx) => (
-              <motion.div
+              <m.div
                 key={testimonial._id}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -284,7 +284,7 @@ export const Home = () => {
                 transition={{ delay: idx * 0.1 }}
               >
                 <TestimonialCard testimonial={testimonial} />
-              </motion.div>
+              </m.div>
             ))}
           </div>
           <div className="mt-8 text-center md:hidden">
@@ -298,15 +298,15 @@ export const Home = () => {
 
       {/* CTA Section */}
       <section className="max-w-5xl mx-auto px-4 py-20">
-        <motion.div 
+        <m.div 
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           className="relative rounded-[2.5rem] overflow-hidden bg-gradient-to-br from-blue-600 via-indigo-600 to-purple-700 p-12 text-center text-white shadow-2xl"
         >
           <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10 mix-blend-overlay"></div>
-          <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl transform translate-x-1/2 -translate-y-1/2"></div>
-          <div className="absolute bottom-0 left-0 w-64 h-64 bg-black/10 rounded-full blur-3xl transform -translate-x-1/2 translate-y-1/2"></div>
+          <div className="absolute top-0 right-0 w-32 h-32 md:w-64 md:h-64 bg-white/10 rounded-full blur-xl md:blur-3xl transform translate-x-1/2 -translate-y-1/2"></div>
+          <div className="absolute bottom-0 left-0 w-32 h-32 md:w-64 md:h-64 bg-black/10 rounded-full blur-xl md:blur-3xl transform -translate-x-1/2 translate-y-1/2"></div>
           <div className="relative z-10">
             <h2 className="text-4xl md:text-6xl font-bold mb-6 tracking-tight">Ready to Start Your Project?</h2>
             <p className="text-xl md:text-2xl mb-10 text-blue-100 max-w-2xl mx-auto font-light">
@@ -319,7 +319,7 @@ export const Home = () => {
               Contact Me Today
             </Link>
           </div>
-        </motion.div>
+        </m.div>
       </section>
     </div>
   );
