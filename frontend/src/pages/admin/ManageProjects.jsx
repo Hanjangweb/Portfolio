@@ -163,11 +163,11 @@ export const ManageProjects = () => {
                   onChange={handleChange}
                   className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-900 border-none rounded-xl focus:ring-2 focus:ring-primary dark:text-white"
                 >
-                  <option value="web">Web Development</option>
-                  <option value="mobile">Mobile App</option>
+                  <option value="web-development">Web Development</option>
+                  <option value="mobile-app">Mobile App</option>
                   <option value="design">Web Design </option>
                   <option value="mern">Mern Stack</option>
-                  <option value="word">Word Press</option>
+                  <option value="wordpress">Word Press</option>
                   <option value="shopify">Shopify</option>
                   <option value="figma">Figma</option>
                   <option value="php">Php</option>
