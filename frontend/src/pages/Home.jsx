@@ -332,7 +332,7 @@ export const Home = () => {
           target="_blank"
           rel="noopener noreferrer"
           className="fixed z-50 flex items-center justify-center gap-2 bg-[#25D366] text-white shadow-lg hover:bg-[#128C7E] transition-all 
-          md:bottom-8 md:right-8 md:rounded-full md:w-16 md:h-16 md:p-0
+          md:bottom-8 md:right-8 md:left-auto md:rounded-full md:w-16 md:h-16 md:p-0
           bottom-0 left-0 w-full rounded-none px-4 py-4"
         >
           <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 md:w-8 md:h-8" viewBox="0 0 24 24" fill="currentColor">
