@@ -19,6 +19,7 @@ const settingsSchema = new mongoose.Schema(
       linkedin: { type: String, default: "" },
       twitter: { type: String, default: "" },
       instagram: { type: String, default: "" },
+      whatsapp: { type: String, default: "" },
     },
     siteName: {
       type: String,
