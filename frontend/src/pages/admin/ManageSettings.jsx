@@ -17,7 +17,8 @@ export const ManageSettings = () => {
       github: '',
       linkedin: '',
       twitter: '',
-      instagram: ''
+      instagram: '',
+      whatsapp: ''
     }
   });
 
@@ -200,6 +201,21 @@ export const ManageSettings = () => {
                   className="w-full pl-12 pr-4 py-3 bg-gray-50 dark:bg-gray-900 border-none rounded-2xl focus:ring-2 focus:ring-primary dark:text-white"
                 />
               </div>
+            </div>
+
+            <div className="md:col-span-2 lg:col-span-1">
+              <label className="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-2">WhatsApp Number</label>
+              <div className="relative">
+                <Phone className="absolute left-4 top-3 text-gray-400" size={20} />
+                <input
+                  type="text"
+                  value={formData.socialLinks.whatsapp || ''}
+                  onChange={(e) => setFormData({ ...formData, socialLinks: { ...formData.socialLinks, whatsapp: e.target.value } })}
+                  placeholder="e.g. 1234567890"
+                  className="w-full pl-12 pr-4 py-3 bg-gray-50 dark:bg-gray-900 border-none rounded-2xl focus:ring-2 focus:ring-primary dark:text-white"
+                />
+              </div>
+              <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">Enter number with country code (e.g., 1234567890). Leave blank to hide.</p>
             </div>
           </div>
         </div>
