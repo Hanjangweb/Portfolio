@@ -21,6 +21,7 @@ import footerRoutes from "./routes/footerRoutes.js";
 import settingsRoutes from "./routes/settingsRoutes.js";
 import uploadRoutes from "./routes/uploadRoutes.js";
 import aiRoutes from "./routes/aiRoutes.js";
+import serviceRoutes from "./routes/serviceRoutes.js";
 import compression from "compression";
 import path from "path";
 import { fileURLToPath } from "url";
@@ -97,6 +98,7 @@ app.use("/api/footer", footerRoutes);
 app.use("/api/settings", settingsRoutes);
 app.use("/api/upload", uploadRoutes);
 app.use("/api/ai", aiRoutes);
+app.use("/api/services", serviceRoutes);
 
 // Static folders with caching headers
 app.use("/uploads", express.static(path.join(__dirname, "uploads"), {

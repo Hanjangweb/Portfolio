@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { LayoutDashboard, FolderKanban, FileText, Wrench, MessageSquare, LogOut, ArrowLeft, Star, Link as LinkIcon, Settings, Menu, X } from 'lucide-react';
+import { LayoutDashboard, FolderKanban, FileText, Wrench, MessageSquare, LogOut, ArrowLeft, Star, Link as LinkIcon, Settings, Menu, X, Briefcase } from 'lucide-react';
 import { useAuthStore } from '../store/store';
 
 export const AdminLayout = ({ children }) => {
@@ -19,6 +19,7 @@ export const AdminLayout = ({ children }) => {
     { name: 'Projects', path: '/admin/projects', icon: FolderKanban },
     { name: 'Blog', path: '/admin/blog', icon: FileText },
     { name: 'Skills', path: '/admin/skills', icon: Wrench },
+    { name: 'Services', path: '/admin/services', icon: Briefcase },
     { name: 'Testimonials', path: '/admin/testimonials', icon: Star },
     { name: 'Inquiries', path: '/admin/inquiries', icon: MessageSquare },
     { name: 'Footer', path: '/admin/footer', icon: LinkIcon },

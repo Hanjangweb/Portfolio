@@ -23,6 +23,7 @@ const Login = lazy(() => import('./pages/Login'));
 const Dashboard = lazy(() => import('./pages/admin/Dashboard'));
 const ManageProjects = lazy(() => import('./pages/admin/ManageProjects'));
 const ManageSkills = lazy(() => import('./pages/admin/ManageSkills'));
+const ManageServices = lazy(() => import('./pages/admin/ManageServices'));
 const ManageBlog = lazy(() => import('./pages/admin/ManageBlog'));
 const ManageTestimonials = lazy(() => import('./pages/admin/ManageTestimonials'));
 const ManageInquiries = lazy(() => import('./pages/admin/ManageInquiries'));
@@ -92,6 +93,7 @@ function App() {
                       <Route path="dashboard" element={<Dashboard />} />
                       <Route path="projects" element={<ManageProjects />} />
                       <Route path="skills" element={<ManageSkills />} />
+                      <Route path="services" element={<ManageServices />} />
                       <Route path="blog" element={<ManageBlog />} />
                       <Route path="testimonials" element={<ManageTestimonials />} />
                       <Route path="inquiries" element={<ManageInquiries />} />

@@ -57,6 +57,15 @@ export const skillsAPI = {
   delete: (id) => API.delete(`/skills/${id}`),
 };
 
+// Services endpoints
+export const servicesAPI = {
+  getAll: () => API.get('/services'),
+  getOne: (id) => API.get(`/services/${id}`),
+  create: (data) => API.post('/services', data),
+  update: (id, data) => API.put(`/services/${id}`, data),
+  delete: (id) => API.delete(`/services/${id}`),
+};
+
 // Contact endpoints
 export const contactAPI = {
   submit: (data) => API.post('/contact', data),

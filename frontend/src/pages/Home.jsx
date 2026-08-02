@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { m } from 'framer-motion';
-import { projectsAPI, skillsAPI, testimonialsAPI, settingsAPI } from '../utils/api';
+import { projectsAPI, skillsAPI, testimonialsAPI, settingsAPI, servicesAPI } from '../utils/api';
 import { ProjectCard, SkillCard, TestimonialCard } from '../components/Cards';
 import { ArrowRight, Code2, Zap, Target, Sparkles } from 'lucide-react';
+import * as LucideIcons from 'lucide-react';
 import { useFetch } from '../hooks/useCustom';
 
 export const Home = () => {
@@ -11,21 +12,24 @@ export const Home = () => {
   const [projects, setProjects] = useState([]);
   const [skills, setSkills] = useState([]);
   const [allSkills, setAllSkills] = useState([]);
+  const [services, setServices] = useState([]);
   const [testimonials, setTestimonials] = useState([]);
   const [settings, setSettings] = useState(null);
 
   useEffect(() => {
     const loadData = async () => {
       try {
-        const [projectsData, skillsData, testimonialsData, settingsData] = await Promise.all([
+        const [projectsData, skillsData, servicesData, testimonialsData, settingsData] = await Promise.all([
           fetchData(() => projectsAPI.getAll()),
           fetchData(() => skillsAPI.getAll()),
+          fetchData(() => servicesAPI.getAll()),
           fetchData(() => testimonialsAPI.getAll()),
           fetchData(() => settingsAPI.get()),
         ]);
-        setProjects(projectsData?.data?.slice(0, 3) || []);
+        setProjects(projectsData?.data?.slice(0, 6) || []);
         setSkills(skillsData?.data?.slice(0, 6) || []);
         setAllSkills(skillsData?.data || []);
+        setServices(servicesData?.data?.slice(0, 6) || []);
         setTestimonials(testimonialsData?.data?.slice(0, 3) || []);
         setSettings(settingsData?.data || null);
       } catch (error) {
@@ -184,6 +188,47 @@ export const Home = () => {
               <p className="text-gray-600 dark:text-gray-400 leading-relaxed">{feature.desc}</p>
             </m.div>
           ))}
+        </div>
+      </section>
+
+      {/* Services Section */}
+      <section className="py-20 relative overflow-hidden bg-gray-50/50 dark:bg-gray-900/30" style={{ contentVisibility: 'auto', containIntrinsicSize: '0 800px' }}>
+        <div className="max-w-8xl mx-auto px-4 relative z-10">
+          <div className="text-center mb-12">
+            <span className="inline-block px-4 py-1.5 rounded-full bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 font-semibold text-sm mb-3 border border-blue-100 dark:border-blue-800">
+              What I Offer
+            </span>
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">My Services</h2>
+            <p className="text-gray-500 dark:text-gray-400 text-lg max-w-2xl mx-auto">Tailored solutions to help your business grow</p>
+          </div>
+          
+          <div className="md:grid md:grid-cols-3 md:gap-8 flex overflow-x-auto pb-8 snap-x snap-mandatory hide-scrollbar cursor-grab active:cursor-grabbing"
+               style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+          >
+            {services.map((service, idx) => {
+              const Icon = LucideIcons[service.icon] || LucideIcons.Briefcase;
+              return (
+                <m.div
+                  key={service._id}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: idx * 0.1 }}
+                  className="min-w-[85vw] sm:min-w-[300px] md:min-w-0 snap-center shrink-0 mx-2 md:mx-0"
+                >
+                  <div className="glass p-8 rounded-2xl h-full border border-gray-100 dark:border-gray-800 hover:shadow-xl hover:border-blue-200 dark:hover:border-blue-800 transition-all group">
+                    <div className="w-14 h-14 bg-blue-50 dark:bg-blue-900/30 rounded-xl flex items-center justify-center mb-6 text-blue-600 dark:text-blue-400 group-hover:scale-110 group-hover:bg-blue-600 group-hover:text-white transition-all">
+                      <Icon size={28} />
+                    </div>
+                    <h3 className="text-2xl font-bold mb-3 text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">{service.title}</h3>
+                    <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
+                      {service.description}
+                    </p>
+                  </div>
+                </m.div>
+              );
+            })}
+          </div>
         </div>
       </section>
 
